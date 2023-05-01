@@ -64,6 +64,6 @@
 
 ---
 
-### [Решение](https://github.com/syrovezhko/tinkoff_contest/tree/test/test1)
+### [Решение](https://github.com/syrovezhko/tinkoff_contest/tree/test/test1/task1.js)
 
 ### [обратно в ветку](https://github.com/syrovezhko/tinkoff_contest/tree/test) | [на главную](https://github.com/syrovezhko/tinkoff_contest)
