@@ -7,14 +7,10 @@ let total = 'NO';
 process.stdin.on('end', () => { console.log(total); process.exit(0); });
 rl.on('line', function (data) {
         let newData = data.split(' ').filter(i => i!=='').map(i=>Number(i));
-        // let total = data;
         if(data === newData.sort().join(' ') || data === newData.sort().reverse().join(' ')){
           console.log('YES')
-          // total ='YES'
         } else {
           console.log('NO')
         }
-        // console.log(typeof data.sort().join(' '))
-        // console.log(total)
         rl.close();
 });

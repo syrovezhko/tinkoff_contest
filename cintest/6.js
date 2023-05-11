@@ -17,6 +17,18 @@ function fillArr(a, b) {
   return result
 }
 
+function indexOfMax(arr) {
+  let max = arr[0];
+  let maxIndex = 0;
+  for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > max) {
+          maxIndex = i;
+          max = arr[i];
+      }
+  }
+  return maxIndex;
+}
+
 var readline = require('readline');
 
 var input = [];
@@ -35,43 +47,16 @@ rl.on('line', function(line) {
   const points = inputNumbers.slice(1)
 
   if (inputNumbers.length == n+1) {
-    let l = points.map(i => i[0])
+    // let l = points.map(i => i[0])
     let r = points.map(i => i[1])
-    let medians = [];
+    console.log('______________')
+    console.log(r)
+    while(s < r.reduce((partialSum, a) => partialSum + a, 0)) {
 
-    for(let i = 0; i < n; i++){
-      if(l[i] !== r[i]){
-        medians.push(median(fillArr(l[i], r[i])))
-      }else{
-        medians.push(l[i])
-      }
-      
+      console.log(s, " < ", r.reduce((partialSum, a) => partialSum + a, 0))
+      r[indexOfMax(r)]--
     }
-    let medianOfMedians = median(fillArr(median(l.sort()), median(r.sort())))
-    console.log('----------------------')
-    if(medianOfMedians*n <= s){
-      console.log(median(r.sort()))
-    } else {
-      console.log(Math.floor(medianOfMedians))
-    }
-    
-    // console.log('сумма максисмуммов ',sum)
-    // console.log('медиана мин ',median(l))
-    // console.log('медиана макс ',median(r))
-    // console.log('left', l)
-    // console.log('right', r)
-    // console.log('----------------------')
-
-    // console.log('min ', median(l.sort()))
-    // console.log('max ', median(r.sort()))
-    // console.log('----------------------')
-    // console.log(median(fillArr(l[2], r[2])))
-    // console.log(medians)
-    // console.log(medians, ' => ', median(medians))
-    
-    // console.log("chtlytt fhba ", s/n)
-    // console.log("min to max ", median(fillArr(median(l.sort()), median(r.sort()))))
-
+    console.log(median(r))
 
     rl.close();
 
