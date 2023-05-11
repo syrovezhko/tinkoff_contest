@@ -1,32 +1,6 @@
-function median(data) {
-  data.sort((a, b) => a - b);
-  if (data.length % 2) {
-    return data[Math.floor(data.length / 2)];
-  } else {
-    return (data[data.length / 2] + data[data.length / 2 - 1]) / 2;
-  }
-}
 
-function fillArr(a, b) {
-  let start = a
-  let end = b
-  let result = []
-  while(start <= end) {
-    result.push(start++)
-  }
-  return result
-}
-
-function indexOfMax(arr) {
-  let max = arr[0];
-  let maxIndex = 0;
-  for (let i = 1; i < arr.length; i++) {
-      if (arr[i] > max) {
-          maxIndex = i;
-          max = arr[i];
-      }
-  }
-  return maxIndex;
+function compare(a, b){
+  return a[0] - b[0]
 }
 
 var readline = require('readline');
@@ -44,19 +18,29 @@ rl.on('line', function(line) {
 
   const n = inputNumbers[0][0]
   const s = inputNumbers[0][1]
-  const points = inputNumbers.slice(1)
+  let points = inputNumbers.slice(1)
 
   if (inputNumbers.length == n+1) {
-    // let l = points.map(i => i[0])
+    let l = points.map(i => i[0])
     let r = points.map(i => i[1])
-    console.log('______________')
-    console.log(r)
-    while(s < r.reduce((partialSum, a) => partialSum + a, 0)) {
 
-      console.log(s, " < ", r.reduce((partialSum, a) => partialSum + a, 0))
-      r[indexOfMax(r)]--
+    let looserNum = (n-1)/2
+    // let sorted = points.sort(compare)
+    let sorted = points.sort((a, b) => a[0]-b[0])
+
+    let looserSum = 0
+    for(let i=0; i<looserNum; i++){
+      looserSum+=sorted[i][0]
     }
-    console.log(median(r))
+    
+    let tail = s-looserSum
+    let best = (tail)/((n+1)/2)
+    let bestArr = sorted.slice((n-1)/2)
+    let bestSum = 0
+    bestArr.map(i => bestSum+=i[1])
+    if(bestSum < tail) best = bestSum/((n+1)/2)
+    console.log(Math.floor(best))
+
 
     rl.close();
 
